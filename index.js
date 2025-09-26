@@ -14,6 +14,8 @@ const proxy = httpProxy.createProxyServer();
     console.log("MongoDB connected.");
 })();
 
+app.get('/', () => { return res.status(200).send('reverse proxy running') })
+
 app.use(async (req, res) => {
     const hostName = req.headers.host;
     const subDomain = hostName.split('.')[0];
