@@ -5,6 +5,8 @@ const { getSecrets } = require('./utils/secrets')
 async function connectDb() {
     const secrets = await getSecrets();
 
+    console.log(secrets);
+
     if (mongoose.connection.readyState === 1) {
         console.log("Already connected to MongoDB.");
         return;
