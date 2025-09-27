@@ -11,7 +11,8 @@ async function connectDb() {
     }
 
     try {
-        await mongoose.connect(secrets?.mongoDb_uri);
+        const URI = secrets?.mongoDb_uri || process.env.MONGO_DB_URI;
+        await mongoose.connect(URI);
         console.log("Successfully connected to MongoDB!");
 
     } catch (err) {
