@@ -14,7 +14,7 @@ const proxy = httpProxy.createProxyServer();
     console.log("MongoDB connected.");
 })();
 
-app.get('/', () => { return res.status(200).send('reverse proxy running') })
+app.get('/', (req, res) => { return res.status(200).send('reverse proxy running') })
 
 app.use(async (req, res) => {
     const hostName = req.headers.host;
@@ -39,7 +39,7 @@ app.use(async (req, res) => {
 
 proxy.on('proxyReq', (proxyReq, req, res) => { const url = req.url; if (url === '/') { proxyReq.path += 'index.html'; } return proxyReq; })
 
-app.get('app/health', (req, res) => {
+app.get('/health', (req, res) => {
     res.status(200).send('Health OK');
 })
 
